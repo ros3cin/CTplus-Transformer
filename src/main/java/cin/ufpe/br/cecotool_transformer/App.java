@@ -43,11 +43,11 @@ public class App
     	String rootTargetDirectory = "C:\\Users\\RENATO\\Documents\\Mestrado\\Hasan Apps\\commons-math\\src\\main\\java";
     	String recommendationsFile = "C:\\Users\\RENATO\\scala-ide-workspace\\CECOTool\\nexus 7 commons math recommendations.csv";
     	App app = new App();
-    	logger.info("Transformer started");
     	app.execute(rootTargetDirectory, recommendationsFile);
     }
     
     public void execute(String rootTargetDirectory, String recommendationsFile) throws IOException {
+    	logger.info("Transformer started");
     	Map<String, ModifiedFile> modifiedFiles = new HashMap<String, ModifiedFile>();
     	logger.info("Staging recommendations...");
     	stage(recommendationsFile, rootTargetDirectory, new RecommendationMap(), modifiedFiles);
@@ -64,10 +64,8 @@ public class App
     
     private void stage(String recommendationsFile, String rootTargetDirectory, RecommendationMap recommendationMap, Map<String, ModifiedFile> modifiedFiles) throws FileNotFoundException, IOException {
     	List<Recommendation> recommendations = getRecommendations(recommendationsFile);
-    	TypeSolver typeSolver = new CombinedTypeSolver(new ReflectionTypeSolver(), new JavaParserTypeSolver("C:\\Users\\RENATO\\Documents\\Mestrado\\Hasan Apps\\commons-math\\src\\main\\java"));
-    	JavaParserFacade typeSolverFacade = JavaParserFacade.get(typeSolver);
     	for(Recommendation recommendation : recommendations) {
-    		stage(recommendation, rootTargetDirectory, recommendationMap, modifiedFiles, typeSolverFacade);
+    		stage(recommendation, rootTargetDirectory, recommendationMap, modifiedFiles);
     	}
     }
     
@@ -75,8 +73,7 @@ public class App
     		Recommendation recommendation,
     		String rootTargetDirectory,
     		RecommendationMap recommendationMap,
-    		Map<String, ModifiedFile> modifiedFiles,
-    		JavaParserFacade typeSolverFacade
+    		Map<String, ModifiedFile> modifiedFiles
     		) throws IOException {
     	String classPath = recommendation.getClassPath().replace('.', '/');
     	int innerClassMarkerIndex = classPath.indexOf('$');

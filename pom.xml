@@ -81,7 +81,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										cin.ufpe.br.cecotool_transformer.App
+										cin.ufpe.br.cecotool_transformer.commandline.Entry
 									</mainClass>
 								</manifest>
 							</archive>
