@@ -40,8 +40,8 @@ public class App
 	
     public static void main( String[] args ) throws IOException
     {
-    	String rootTargetDirectory = "C:\\Users\\RENATO\\Documents\\Mestrado\\Hasan Apps\\commons-math\\src\\main\\java";
-    	String recommendationsFile = "C:\\Users\\RENATO\\scala-ide-workspace\\CECOTool\\nexus 7 commons math recommendations.csv";
+    	String rootTargetDirectory = "C:\\Users\\RENATO\\Documents\\Mestrado\\Apps jStanley\\Sources\\battlecry\\src";
+    	String recommendationsFile = "C:\\Users\\RENATO\\Documents\\Mestrado\\Apps jStanley\\linuxapps02 battlecry recs.csv";
     	App app = new App();
     	app.execute(rootTargetDirectory, recommendationsFile);
     }

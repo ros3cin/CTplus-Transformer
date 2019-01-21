@@ -19,7 +19,7 @@ public class Entry {
 			App app = new App();
 	    	app.execute(cmd.targetProjectDirectory, cmd.recommendationFile);
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e,e);
 		}
 	}
 

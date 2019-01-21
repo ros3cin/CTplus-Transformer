@@ -112,7 +112,7 @@ public class RecommendationMap {
 	}
 	
 	public void transformExpression(ObjectCreationExpr expr, String recommendation, VariableDeclarator declarator) {
-		NodeList<Type> typeArguments = expr.getType().getTypeArguments().get();
+		NodeList<Type> typeArguments = expr.getType().getTypeArguments().isPresent() ? expr.getType().getTypeArguments().get() : null;
 		boolean isWrappedCollection = this.wrappedCollections.containsKey(recommendation);
 		String collection = isWrappedCollection ? this.wrappedCollections.get(recommendation) : this.recommendationsMap.get(recommendation);
 		if (declarator != null) {
@@ -148,7 +148,7 @@ public class RecommendationMap {
 				"List",
 				"Map",
 				"Set")) {
-			NodeList<Type> typeArguments = type.getTypeArguments().get();
+			NodeList<Type> typeArguments = type.getTypeArguments().isPresent() ? type.getTypeArguments().get() : null;
 			if (jcfLists.contains(typeName))
 				declarator.setType(new ClassOrInterfaceType(null, new SimpleName("java.util.List"), typeArguments));
 			else if (jcfMaps.contains(typeName))
